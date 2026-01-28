@@ -1,0 +1,399 @@
+/* CSS cho demo CSS Units & Typography */
+
+/* 1) Thiết lập gốc: dùng rem cho đồng nhất, đồng thời hạn chế zoom quá mức */
+html {
+  /* Cơ sở: 1rem = 16px mặc định trình duyệt; có thể điều chỉnh để scale toàn cục */
+  font-size: 16px;
+}
+
+:root {
+  /* Thang typographic fluid: dùng clamp để tự co giãn theo viewport */
+  --step--2: clamp(0.75rem, 0.70rem + 0.2vw, 0.85rem);  /* nhỏ */
+  --step--1: clamp(0.875rem, 0.80rem + 0.3vw, 1rem);
+  --step-0:  clamp(1rem, 0.95rem + 0.4vw, 1.125rem);    /* body */
+  --step-1:  clamp(1.125rem, 1rem + 0.6vw, 1.375rem);   /* h4 */
+  --step-2:  clamp(1.25rem, 1.1rem + 0.8vw, 1.625rem);  /* h3 */
+  --step-3:  clamp(1.5rem, 1.3rem + 1.0vw, 2rem);       /* h2 */
+  --step-4:  clamp(2rem, 1.8rem + 1.5vw, 2.5rem);       /* h1 */
+
+  /* Tỷ lệ khoảng cách (spacing scale) theo rem để giữ nhịp layout */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+
+  /* Màu */
+  --bg: #cb6c19e1;          /* slate-900 */
+  --surface: #cb510f;     /* tối hơn một chút */
+  --text: #e5e7eb;        /* slate-200 */
+  --muted: #010202;       /* slate-400 */
+  --primary: #22d3ee;     /* cyan-400 */
+  --accent: #a78bfa;      /* violet-400 */
+}
+
+/* 2) Body và font mặc định */
+body {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: var(--step-0);
+  line-height: 1.7; /* line-height thoáng để dễ đọc */
+  color: var(--text);
+  background: linear-gradient(180deg, var(--bg), #d77308e0);
+  margin: 0;
+}
+
+/* Container width dùng % để fluid và max-width dùng ch để dựa vào chữ */
+.container {
+  width: min(92%, 72ch);  /* ch dựa trên độ rộng ký tự của font hiện tại */
+  margin: 0 auto;
+}
+
+/* Header với padding dùng clamp để thích ứng viewport */
+.site-header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(6px);
+  background: color-mix(in hsl, var(--bg) 85%, #000 15% / 0.6);
+  border-bottom: 1px solid #000000; /* px minh hoạ đơn vị tuyệt đối */
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(0.75rem, 1vw, 1rem) 0;
+}
+.brand {
+  font-size: var(--step-3);
+  font-weight: 700; /* variable font hỗ trợ nhiều cấp độ weight */
+  letter-spacing: 0.01em;
+}
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: var(--space-2);
+  font-size: var(--step--1);
+}
+.nav a:hover { color: var(--primary); }
+
+/* Card surface dùng em bên trong để kế thừa cỡ chữ cha */
+.card {
+  background: var(--surface);
+  border: 1px solid #1f2937;
+  border-radius: 0.75rem;
+  padding: 1.25em; /* em giúp nội dung co giãn theo font-size của card */
+  margin: var(--space-3) 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.card h2, .card h3, .card h4 { margin-top: 0; }
+
+.highlight { color: var(--accent); font-weight: 600; }
+code { background: #0b1325; padding: 0.1em 0.35em; border-radius: 0.35em; }
+
+/* Grid minh hoạ nhiều đơn vị */
+.units-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-2);
+}
+.unit-box { padding: 1em; border-radius: 0.5rem; background: #0b1325; }
+.unit-box h4 { font-size: var(--step-1); margin: 0 0 0.5em; }
+.unit-box .sample { color: var(--muted); }
+
+/* Ví dụ cụ thể cho từng unit */
+.unit-box.px { width: 240px; }
+.unit-box.rem { font-size: 1rem; }
+.unit-box.em { font-size: 1.2em; }
+.unit-box.percent { width: 100%; }
+.unit-box.vwvh { min-height: 20vh; }
+.unit-box.clamp { font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem); }
+
+/* Typography demo */
+.typography-demo .title {
+  font-size: var(--step-2);
+  font-weight: 650;
+}
+.typography-demo .lead {
+  font-size: var(--step-1);
+  line-height: 1.8;
+  letter-spacing: 0.005em; /* tinh chỉnh khoảng cách ký tự */
+}
+.typography-demo .note { font-weight: 600; color: var(--primary); }
+.typography-demo blockquote {
+  margin: var(--space-2) 0;
+  padding-left: var(--space-2);
+  border-left: 4px solid var(--accent); /* px cố định để tạo nhấn */
+  font-style: italic;
+}
+.typography-demo .small { font-size: var(--step--2); color: var(--muted); }
+
+/* Responsive hero dùng vh + fluid type */
+.responsive-hero {
+  min-height: 60vh; /* chiếm 60% chiều cao viewport */
+  display: grid;
+  place-items: center;
+  background: radial-gradient(1200px circle at 10% 20%, rgba(167,139,250,0.15), transparent),
+              radial-gradient(1000px circle at 90% 30%, rgba(34,211,238,0.15), transparent);
+  border-radius: 1rem;
+}
+.hero-content {
+  text-align: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+}
+.hero-content h2 { font-size: var(--step-3); }
+.hero-content p { color: var(--muted); font-size: var(--step-0); }
+.btn {
+  display: inline-block;
+  margin-top: var(--space-2);
+  padding: 0.65em 1.1em; /* dùng em để theo ngữ cảnh font của nút */
+  font-weight: 600;
+  color: #04121f;
+  background: var(--primary);
+  border-radius: 0.6rem;
+  box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+  text-decoration: none;
+}
+.btn:hover { filter: brightness(1.1); }
+
+/* Columns layout dùng % và gap theo rem */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+.columns .col {
+  background: #0b1325;
+  border-radius: 0.75rem;
+  padding: 1em;
+}
+
+/* Breakpoint: chuyển về 1–2 cột trên màn hình nhỏ */
+@media (max-width: 800px) {
+  .columns { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .columns { grid-template-columns: 1fr; }
+}
+
+/* Footer */
+.site-footer { border-top: 1px solid #000000; margin-top: var(--space-4); }
+.site-footer .container { padding: var(--space-2) 0; color: var(--muted); font-size: var(--step--1); }
+/*logo */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+.brand img {
+    width: 60px;
+    height: auto;
+}
+body{
+    background-image: 
+ url('pic/');
+   background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
+}
+
+.trangchu{
+    font-size: 70px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+ .blue{
+    color: rgb(38, 0, 255);
+    font-size: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+ }
+ .red{
+    color: red;
+    font-size: 60px;
+    font-family: 'Times New Roman', Times, serif;
+ }
+.white{
+    color: aliceblue;
+    font-size: 60px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+    .text{
+        font-size: 50px;
+        font-family: Arial, Helvetica, sans-serif;
+        
+
+    }
+
+    body {
+  background: #cfcdca;
+  color: #4a3b28;
+}
+
+
+
+    .table-2 {
+  width: 90%;
+  margin: 40px auto;
+  border-spacing: 0;
+  background: #f7f3f385; /* màu be sáng */
+  border-radius: 10px;
+  overflow: hidden;
+  border: none;
+}
+
+.table-2 td {
+  padding: 20px;
+  vertical-align: top;
+  border: none;
+}
+
+.table-2 img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+    .table-2 .col-image { width: 45%; }
+    .table-2 .col-content { width: 55%; }
+    .table-2 img {
+      width: 100%;
+      max-width: 560px;   /* ảnh lớn vừa phải như hình mẫu */
+      height: 320px;      /* giữ khung chiều cao gần giống mẫu */
+      object-fit: cover;  /* cắt ảnh gọn, không méo */
+      display: block;
+    }
+    .about-sub { font-weight: bold; margin: 0 0 6px; }
+    .about-title { font-size: 28px; font-weight: 800; margin: 0 0 12px; }
+    .table-2 .col-content p { margin: 0 0 12px; }
+    .table-2 .col-content a { color: #0b72b9; text-decoration: underline; }
+    .table-1 { background: #0bdc69; }      /* tô nền bảng 1 */
+    .table-1 th { font-weight: bold; text-align: left; background: #f90000; } /* nền header */
+    table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+    th, td { border: 1px solid #ddd; padding: 10px; vertical-align: top; }
+    .header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav {
+  position: sticky;
+  left: 50%;
+  transform: translateX(-50%);
+}
+header nav a {
+  color: #672a05ad;
+}
+header nav a:hover {
+  color: #000;  /* hoặc #fff tùy nền */
+}
+header nav {
+  background: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+
+body {
+  background: url("image/tartnuoc1.jpg") center/cover fixed no-repeat;
+  margin: 0;
+}
+.tam{
+  color: white;
+}
+
+.menu-grid {
+  width: min(92%, 1100px);
+  margin: 40px auto 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+}
+
+.product-card {
+  background: rgb(255, 255, 255);
+  padding: 14px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.prod-name {
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.prod-price {
+  color: var(black); 
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+/* ==== FOOTER ==== */
+footer {
+ background: linear-gradient(to right, #1f1f1f, #2c2c2c);
+  color: #E5DCC3;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  margin-top: 40px;
+  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.4);
+  letter-spacing: 0.3px;
+  opacity: 0.95;
+}
+.location-media {
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* Map nhỏ lại */
+.location-media .map iframe {
+  width: 380px;
+  height: 250px;
+  border-radius: 10px;
+  border: none;
+}
+
+/* Video reel */
+.location-media .video iframe {
+  width: 330px;
+  height: 600px; /* reel dọc */
+  border-radius: 12px;
+  border: none;
+  overflow: hidden;
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+  .location-media {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .location-media .map iframe {
+    width: 90%;
+    height: 250px;
+  }
+
+  .location-media .video iframe {
+    width: 80%;
+    height: 450px;
+  }
+}
