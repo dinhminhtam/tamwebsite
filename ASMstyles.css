@@ -265,19 +265,125 @@ nav ul li a:hover {
     grid-template-columns: 1fr;
     text-align: center;
   }
-/* ===== HOVER PRODUCT CARD ===== */
+
+  .menu-grid .product-card img {
+    margin: auto;
+  }
+}
+footer {
+    background: #4b2e1f; /* nâu đậm */
+    color: #f8e9d8; /* beige sáng */
+    padding: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    font-family: 'Montserrat', sans-serif; /* dùng font elegant */
+    gap: 40px;
+}
+
+footer h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+footer p {
+    margin: 6px 0;
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+.footer-right a {
+    display: block;
+    margin: 6px 0;
+    font-size: 15px;
+    color: #f8e9d8;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.footer-right a:hover {
+    color: #ffce8b; /* highlight */
+    transform: translateX(3px);
+}
+
+footer .footer-left,
+footer .footer-right {
+    min-width: 240px;
+}
+@media (max-width: 600px) {
+    footer {
+        padding: 30px 20px;
+        text-align: left;
+        gap: 25px;
+    }
+
+    footer h3 {
+        font-size: 18px;
+    }
+
+    footer p,
+    .footer-right a {
+        font-size: 14px;
+    }
+}
+.footer-right a {
+    color: #f8e9d8;
+    margin-right: 12px;
+    text-decoration: none;
+    transition: .2s;
+}
+
+.footer-right a:hover {
+    color: #ffce8b;
+}
+/* =========================
+   MENU GRID – CÂN ĐẸP
+========================= */
+.menu-grid {
+  max-width: 1200px;
+  margin: 80px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+}
+
+/* =========================
+   PRODUCT CARD – INDEX
+========================= */
 .menu-grid .product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  background: #fff;
+  border-radius: 26px;
+  padding: 26px 22px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* Khi hover card */
+/* Hover card */
 .menu-grid .product-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+  transform: translateY(-12px);
+  box-shadow: 0 22px 44px rgba(0,0,0,0.18);
 }
 
-/* Ảnh zoom nhẹ khi hover */
+/* =========================
+   IMAGE
+========================= */
 .menu-grid .product-card img {
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  object-fit: cover;
+  margin-bottom: 18px;
+
   transition: transform 0.4s ease;
 }
 
@@ -285,17 +391,369 @@ nav ul li a:hover {
   transform: scale(1.08);
 }
 
-/* Giá đổi màu khi hover */
-.menu-grid .product-card:hover .prod-price {
-  color: #7a3f1c;
+/* =========================
+   NAME & PRICE
+========================= */
+.menu-grid .prod-name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.3;
 }
 
-/* Cursor */
-.menu-grid .product-card {
-  cursor: pointer;
+.menu-grid .prod-price {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--brown-light);
 }
 
-  .menu-grid .product-card img {
-    margin: auto;
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================
+   FOOTER LAYOUT
+========================= */
+footer {
+  background: linear-gradient(135deg, #3a2418, #4b2e1f);
+  color: #f6e8d5;
+
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 50px;
+
+  padding: 60px 80px;
+  margin-top: 100px;
+}
+
+/* =========================
+   LEFT
+========================= */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-logo {
+  font-size: 30px;
+  font-weight: 800;
+  color: #ffddb0;
+  text-decoration: none;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.footer-logo:hover {
+  text-decoration: underline;
+}
+
+.footer-left p {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+/* SOCIAL */
+.footer-social {
+  margin-top: 16px;
+  display: flex;
+  gap: 18px;
+}
+
+.footer-social a {
+  color: #f6e8d5;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.footer-social a:hover {
+  color: #ffce8b;
+}
+
+/* =========================
+   RIGHT (MAP)
+========================= */
+.footer-right iframe {
+  width: 100%;
+  height: 220px;
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  footer {
+    grid-template-columns: 1fr;
+    padding: 40px 24px;
+  }
+
+  .footer-right iframe {
+    height: 200px;
+  }
+}
+.icon {
+    width: 22px;
+    filter: invert(90%);
+    opacity: 0.8;
+    transition: .2s;
+}
+
+.icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+/* =========================
+   ACTIVE NAV
+========================= */
+nav ul li a.active {
+  color: #b06c3e;
+  font-weight: 800;
+}
+
+/* =========================
+   BANNER
+========================= */
+.space-banner {
+  height: 280px;
+  background: linear-gradient(
+      rgba(0,0,0,0.45),
+      rgba(0,0,0,0.45)
+    ),
+    url("image/space-banner.jpg") center/cover no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+  text-align: center;
+}
+
+.space-banner h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.space-banner p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* =========================
+   SPACE GRID
+========================= */
+.space-container {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+}
+
+.space-card {
+  background: #fff;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.space-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 22px 44px rgba(0,0,0,0.18);
+}
+
+.space-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.space-card h3 {
+  font-size: 20px;
+  margin: 16px;
+}
+
+.space-card p {
+  margin: 0 16px 20px;
+  font-size: 15px;
+  color: #555;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .space-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .space-container {
+    grid-template-columns: 1fr;
+  }
+
+  .space-banner h1 {
+    font-size: 32px;
+  }
+}
+/* =========================
+   MAIN NAV – DÙNG CHUNG
+========================= */
+.main-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+/* CONTAINER */
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 12px 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.logo img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* MENU */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #4a3b28;
+  position: relative;
+  padding-bottom: 4px;
+  transition: 0.25s;
+}
+
+/* Hover underline */
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #b06c3e;
+  transition: width 0.3s;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+/* ACTIVE (trang đang đứng) */
+.nav-menu a.active {
+  color: #b06c3e;
+  font-weight: 800;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-menu {
+    gap: 18px;
+  }
+}
+/* HERO – ẢNH TRONG MÁY */
+.hero-space {
+  height: 420px;
+
+  /* 👉 ĐỔI TÊN ẢNH Ở ĐÂY */
+  background: url("hero/anh\ khong\ gian.jpg") center/cover no-repeat;
+
+  position: relative;
+}
+
+/* LỚP PHỦ */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  color: #fff;
+}
+
+/* CHỮ GIỮA */
+.hero-overlay h1 {
+  font-size: 64px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.hero-overlay p {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero-space {
+    height: 300px;
+  }
+
+  .hero-overlay h1 {
+    font-size: 40px;
   }
 }
