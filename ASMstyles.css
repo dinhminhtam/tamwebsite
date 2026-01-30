@@ -265,6 +265,35 @@ nav ul li a:hover {
     grid-template-columns: 1fr;
     text-align: center;
   }
+/* ===== HOVER PRODUCT CARD ===== */
+.menu-grid .product-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Khi hover card */
+.menu-grid .product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+}
+
+/* Ảnh zoom nhẹ khi hover */
+.menu-grid .product-card img {
+  transition: transform 0.4s ease;
+}
+
+.menu-grid .product-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Giá đổi màu khi hover */
+.menu-grid .product-card:hover .prod-price {
+  color: #7a3f1c;
+}
+
+/* Cursor */
+.menu-grid .product-card {
+  cursor: pointer;
+}
 
   .menu-grid .product-card img {
     margin: auto;
